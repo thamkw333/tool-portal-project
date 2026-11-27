@@ -8,9 +8,12 @@
 ## Project Structure
 
 - `index.html`: the homepage, at the top level
-- `tools/`: one page per tool (`tool-1.html` is a placeholder)
+- `tools/`: one page per tool (`pitot-static.html` is the first)
 - `css/base.css`: shared styles and the light/dark theme colors
+- `css/tool.css`: styles shared by tool pages (controls, dials, explanation box)
 - `js/theme.js`: the theme toggle, shared by every page
+- `js/pitot-physics.js`: the Pitot-static physics, with no page code so it can be tested on its own
+- `js/pitot-static.js`: the Pitot-static page code (controls, dials, explanations)
 - `assets/`: images and other static files (create when first needed)
 
 Update this section when the structure changes.
@@ -42,7 +45,7 @@ A web portal where students try out small aircraft-systems tools in the browser.
 
 **Phase 1: the portal plus its first tool**
 - [x] Portal shell: homepage, shared header, light/dark theme toggle, and a placeholder card ("Tool 1 — coming soon") that opens its page and links back. Styling is simple and neutral; the visual design is chosen later.
-- [ ] First tool: a Pitot-static simulator. The student sets altitude, airspeed, and climb or descent rate, then picks a blockage (none, pitot blocked, pitot and drain blocked, or static blocked). The tool shows what the airspeed indicator, altimeter, and vertical speed indicator would read, with a short plain-language explanation.
+- [x] First tool: a Pitot-static simulator, replacing the placeholder card. The student sets altitude, true airspeed, and climb or descent rate (aviation units: feet, knots, feet per minute), then picks a blockage (none, pitot blocked, pitot and drain blocked, or static blocked). A blockage locks in at the conditions set when it is picked. Round dials show what the airspeed indicator, altimeter, and vertical speed indicator would read, next to the actual values, with a short plain-language explanation. Uses a standard atmosphere below 36,000 ft.
 
 **Phase 2: more tools**
 - Add further aircraft-systems tools one at a time, using the steps above. Tools are chosen when phase 1 is done.

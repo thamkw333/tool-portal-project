@@ -1,0 +1,207 @@
+/* Styles shared by tool pages (controls, dials, explanation box).
+   Colors come from the theme variables in base.css, so both themes work. */
+
+.tool-layout {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* Wide screens: controls on the left, instruments on the right. */
+@media (min-width: 52rem) {
+  .tool-layout {
+    grid-template-columns: 19rem 1fr;
+    align-items: start;
+  }
+}
+
+fieldset {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+legend {
+  padding: 0 0.25rem;
+  font-weight: 700;
+}
+
+.field {
+  margin-bottom: 1rem;
+}
+
+.field:last-child {
+  margin-bottom: 0;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.field-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.field-row input[type="range"] {
+  flex: 1;
+  min-width: 0;
+  accent-color: var(--link);
+}
+
+.field-row input[type="number"] {
+  width: 6rem;
+  padding: 0.3rem 0.4rem;
+  font: inherit;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.field-hint {
+  margin: 0.25rem 0 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.radio-option {
+  display: block;
+  padding: 0.35rem 0;
+}
+
+.radio-option input {
+  margin-right: 0.5rem;
+  accent-color: var(--link);
+}
+
+/* Instruments */
+.dials {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 1rem;
+  margin: 0 0 1.5rem;
+}
+
+.dial {
+  margin: 0;
+  text-align: center;
+}
+
+.dial svg {
+  display: block;
+  width: 100%;
+  max-width: 14rem;
+  height: auto;
+  margin: 0 auto;
+}
+
+.dial-name {
+  display: block;
+  margin-top: 0.25rem;
+  font-weight: 700;
+}
+
+.reading {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.actual {
+  display: block;
+  color: var(--text-muted);
+}
+
+/* Shown only when an instrument reads something different from the real value. */
+.flag {
+  display: block;
+  min-height: 1.5em;
+  font-weight: 700;
+}
+
+/* Drawing parts inside the dials */
+.dial-face {
+  fill: var(--surface);
+  stroke: var(--border);
+  stroke-width: 3;
+}
+
+.tick {
+  stroke: var(--text);
+  stroke-width: 1;
+}
+
+.tick.major {
+  stroke-width: 2;
+}
+
+.dial-label {
+  fill: var(--text);
+  font-size: 11px;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.dial-unit {
+  fill: var(--text-muted);
+  font-size: 9px;
+  text-anchor: middle;
+}
+
+.needle {
+  stroke: var(--text);
+  stroke-linecap: round;
+}
+
+.hub {
+  fill: var(--text);
+}
+
+/* Explanation box */
+.explanation {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--link);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.explanation h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.explanation p {
+  margin: 0 0 0.5rem;
+}
+
+.explanation p:last-child {
+  margin-bottom: 0;
+}
+
+/* Plain-language word list */
+details.terms {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+details.terms summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+details.terms dt {
+  margin-top: 0.75rem;
+  font-weight: 700;
+}
+
+details.terms dd {
+  margin: 0.15rem 0 0;
+}

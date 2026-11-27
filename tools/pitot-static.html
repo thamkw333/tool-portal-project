@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pitot-static simulator | Aircraft Systems Tools</title>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/tool.css">
+  <script src="../js/theme.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-title" href="../index.html">Aircraft Systems Tools</a>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">Switch to dark theme</button>
+  </header>
+
+  <main>
+    <a class="back-link" href="../index.html">← Back to all tools</a>
+    <h1>Pitot-static simulator</h1>
+    <p>
+      Set the flight conditions, then block part of the pitot-static system to see
+      how the airspeed indicator, altimeter and vertical speed indicator go wrong.
+    </p>
+
+    <details class="terms">
+      <summary>What do these words mean?</summary>
+      <dl>
+        <dt>Pitot tube</dt>
+        <dd>A small tube on the outside of the aircraft that faces the oncoming air. It senses the pressure of the air pushing into it.</dd>
+        <dt>Drain hole</dt>
+        <dd>A tiny hole in the pitot tube that lets rain water out.</dd>
+        <dt>Static port</dt>
+        <dd>A small opening on the side of the aircraft that senses the pressure of the surrounding air, without the push of the wind.</dd>
+        <dt>Airspeed indicator</dt>
+        <dd>Compares the pitot pressure with the static pressure. The bigger the difference, the faster the reading.</dd>
+        <dt>Altimeter</dt>
+        <dd>Turns static pressure into a height. Lower pressure means higher up. The long needle counts hundreds of feet and the short one counts thousands.</dd>
+        <dt>Vertical speed indicator</dt>
+        <dd>Shows how fast the static pressure is changing, which tells you how fast the aircraft is climbing or descending.</dd>
+        <dt>True airspeed</dt>
+        <dd>The aircraft's real speed through the air. The airspeed indicator can show a lower number than this at high altitude, because the air is thinner.</dd>
+        <dt>Standard atmosphere</dt>
+        <dd>A textbook model of how air pressure and temperature change with height. This tool uses it.</dd>
+      </dl>
+    </details>
+
+    <div class="tool-layout">
+      <div class="controls">
+        <fieldset>
+          <legend>Flight conditions</legend>
+
+          <div class="field">
+            <label for="altitude-number">Altitude (ft)</label>
+            <div class="field-row">
+              <input type="range" id="altitude-range" min="0" max="20000" step="50" value="5000" aria-label="Altitude slider">
+              <input type="number" id="altitude-number" min="0" max="20000" step="50" value="5000">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="airspeed-number">True airspeed (kt)</label>
+            <div class="field-row">
+              <input type="range" id="airspeed-range" min="0" max="250" step="1" value="120" aria-label="True airspeed slider">
+              <input type="number" id="airspeed-number" min="0" max="250" step="1" value="120">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="climb-number">Climb rate (ft/min)</label>
+            <div class="field-row">
+              <input type="range" id="climb-range" min="-2000" max="2000" step="100" value="0" aria-label="Climb rate slider">
+              <input type="number" id="climb-number" min="-2000" max="2000" step="100" value="0">
+            </div>
+            <p class="field-hint">Positive means climbing, negative means descending.</p>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Blockage</legend>
+          <label class="radio-option"><input type="radio" name="blockage" value="none" checked>No blockage</label>
+          <label class="radio-option"><input type="radio" name="blockage" value="pitot">Pitot tube blocked (drain hole open)</label>
+          <label class="radio-option"><input type="radio" name="blockage" value="pitotDrain">Pitot tube and drain hole blocked</label>
+          <label class="radio-option"><input type="radio" name="blockage" value="static">Static port blocked</label>
+          <p class="field-hint">A blockage starts at the altitude and speed you have set when you pick it. Change the flight conditions afterwards to see what goes wrong.</p>
+        </fieldset>
+      </div>
+
+      <div class="output">
+        <div class="dials">
+          <figure class="dial">
+            <svg id="asi-dial" viewBox="0 0 200 200" role="img" aria-label="Airspeed indicator"></svg>
+            <figcaption>
+              <span class="dial-name">Airspeed indicator</span>
+              <span class="reading" id="asi-reading"></span>
+              <span class="actual" id="asi-actual"></span>
+              <span class="flag" id="asi-flag"></span>
+            </figcaption>
+          </figure>
+
+          <figure class="dial">
+            <svg id="alt-dial" viewBox="0 0 200 200" role="img" aria-label="Altimeter"></svg>
+            <figcaption>
+              <span class="dial-name">Altimeter</span>
+              <span class="reading" id="alt-reading"></span>
+              <span class="actual" id="alt-actual"></span>
+              <span class="flag" id="alt-flag"></span>
+            </figcaption>
+          </figure>
+
+          <figure class="dial">
+            <svg id="vsi-dial" viewBox="0 0 200 200" role="img" aria-label="Vertical speed indicator"></svg>
+            <figcaption>
+              <span class="dial-name">Vertical speed indicator</span>
+              <span class="reading" id="vsi-reading"></span>
+              <span class="actual" id="vsi-actual"></span>
+              <span class="flag" id="vsi-flag"></span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <section class="explanation" aria-labelledby="explain-heading">
+          <h2 id="explain-heading">What is happening</h2>
+          <p id="explain-main"></p>
+          <p id="explain-now"></p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script src="../js/pitot-physics.js"></script>
+  <script src="../js/pitot-static.js"></script>
+</body>
+</html>
