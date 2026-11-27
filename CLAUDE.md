@@ -7,12 +7,11 @@
 
 ## Project Structure
 
-The repository is nearly empty for now. Planned layout as it grows:
-
-- `index.html`: the main page, at the top level
-- `css/`: stylesheets
-- `js/`: scripts
-- `assets/`: images and other static files
+- `index.html`: the homepage, at the top level
+- `tools/`: one page per tool (`tool-1.html` is a placeholder)
+- `css/base.css`: shared styles and the light/dark theme colors
+- `js/theme.js`: the theme toggle, shared by every page
+- `assets/`: images and other static files (create when first needed)
 
 Update this section when the structure changes.
 
@@ -42,8 +41,8 @@ A web portal where students try out small aircraft-systems tools in the browser.
 ### Phases
 
 **Phase 1: the portal plus its first tool**
-- Homepage, shared header, and the light/dark theme toggle.
-- First tool: a Pitot-static simulator. The student sets altitude, airspeed, and climb or descent rate, then picks a blockage (none, pitot blocked, pitot and drain blocked, or static blocked). The tool shows what the airspeed indicator, altimeter, and vertical speed indicator would read, with a short plain-language explanation.
+- [x] Portal shell: homepage, shared header, light/dark theme toggle, and a placeholder card ("Tool 1 — coming soon") that opens its page and links back. Styling is simple and neutral; the visual design is chosen later.
+- [ ] First tool: a Pitot-static simulator. The student sets altitude, airspeed, and climb or descent rate, then picks a blockage (none, pitot blocked, pitot and drain blocked, or static blocked). The tool shows what the airspeed indicator, altimeter, and vertical speed indicator would read, with a short plain-language explanation.
 
 **Phase 2: more tools**
 - Add further aircraft-systems tools one at a time, using the steps above. Tools are chosen when phase 1 is done.
